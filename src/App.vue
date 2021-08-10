@@ -3,7 +3,7 @@
     <v-app>
       <v-main>
         <v-container>
-          <h2 class="mb-8">Animal Kingdom planet</h2>
+          <home-page></home-page>
         </v-container>
       </v-main>
     </v-app>
@@ -11,9 +11,11 @@
 </template>
 
 <script>
+import homePage from './components/homePage.vue'
 export default {
   name: 'App',
   components: {
+    homePage
   }
 }
 </script>
@@ -23,6 +25,5 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
 }
 </style>
