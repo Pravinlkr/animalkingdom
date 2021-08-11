@@ -19,10 +19,18 @@
         </v-card-title>
         <v-card-text>
           <v-container>
+            <v-alert
+              border="top"
+              color="red lighten-2"
+              dark
+              v-if="message.length>0"
+            >
+              {{message}}
+            </v-alert>
             <v-row>               
               <v-col cols="12">
                 <label for="image">Image* </label>
-                <input type="file" id="image" accept="image/*" @change=uploadImage>
+                <input type="file" id="image" accept="image/*" :key="fileInputKey" @change=uploadImage>
               </v-col>
               <v-col
                 cols="12"
@@ -42,7 +50,7 @@
           <v-btn
             color="blue darken-1"
             text
-            @click="dialog = false"
+            @click="closeDialog()"
           >
             Close
           </v-btn>
@@ -66,22 +74,36 @@ import {mapActions} from 'vuex';
         return{
            dialog: false,
            image: null,
-           name:'' 
+           name:'' ,
+           fileInputKey:0,
+           message:''
         }
     },
     methods:{
       ...mapActions('animal',['addAnimal']),
+      clearInput(){
+        this.message = '';
+        this.fileInputKey++;
+      },
        uploadImage(event){
-         console.log('called')
           event.preventDefault();
           const file = event.target.files[0];
           this.image = URL.createObjectURL(file);
-          console.log(this.image);
        },
       saveAnimal(){
-        this.addAnimal({name:this.name, imgSrc: this.image})
+        if(this.name.length>0 && this.image != null){
+          this.addAnimal({name:this.name, imgSrc: this.image})
+          this.dialog = false;
+          this.name = '';
+          this.clearInput();
+        }
+        else{
+          this.message = 'Both Fields are required***'
+        }
+      },
+      closeDialog(){
+        this.clearInput();
         this.dialog = false;
-        this.image = null;
       }
     }
   }

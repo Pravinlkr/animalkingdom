@@ -27,7 +27,7 @@
         addAnimal(context, payload){
             context.commit('ADD_ANIMAL', payload);
         },
-        deleteAnimal:(context,payload)=>{
+        deleteAnimal(context,payload){
             context.commit('DELETE_ANIMAL',payload)
         }
     }
