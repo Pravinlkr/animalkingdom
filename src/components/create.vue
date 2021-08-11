@@ -19,22 +19,19 @@
         </v-card-title>
         <v-card-text>
           <v-container>
-            <v-row>
-              
+            <v-row>               
               <v-col cols="12">
-                <v-file-input
-                    accept="image/*"
-                    label="Image*"
-                ></v-file-input>
+                <label for="image">Image* </label>
+                <input type="file" id="image" accept="image/*" @change=uploadImage>
               </v-col>
               <v-col
                 cols="12"
               >
-                <v-select
-                  :items="['Cat', 'Dog', 'Fish', 'Cow', 'Lion']"
-                  label="Category*"
+                <v-text-field
+                  label="Name*"
+                  v-model="name"
                   required
-                ></v-select>
+                ></v-text-field>
               </v-col>
             </v-row>
           </v-container>
@@ -52,7 +49,7 @@
           <v-btn
             color="blue darken-1"
             text
-            @click="dialog = false"
+            @click="saveAnimal()"
           >
             Save
           </v-btn>
@@ -63,9 +60,29 @@
 </template>
 
 <script>
-  export default {
-    data: () => ({
-      dialog: false,
-    }),
+import {mapActions} from 'vuex';
+  export default {    
+    data(){
+        return{
+           dialog: false,
+           image: null,
+           name:'' 
+        }
+    },
+    methods:{
+      ...mapActions('animal',['addAnimal']),
+       uploadImage(event){
+         console.log('called')
+          event.preventDefault();
+          const file = event.target.files[0];
+          this.image = URL.createObjectURL(file);
+          console.log(this.image);
+       },
+      saveAnimal(){
+        this.addAnimal({name:this.name, imgSrc: this.image})
+        this.dialog = false;
+        this.image = null;
+      }
+    }
   }
 </script>

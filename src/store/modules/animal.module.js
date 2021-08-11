@@ -1,84 +1,42 @@
-const state = {
-    /*todoList:[
-        {title: 'Task One', isEdit:false},
-        {title: 'Task Two', isEdit:false},
-        {title: 'Task Three', isEdit:false},
-        {title: 'Task Four', isEdit:false}
-    ],
-    message:'',
-    showSnackbar: false,
-    taskSaved: false*/
+    const state = {
+        category:[
+            {name:'Cat', imgSrc:'https://i.pinimg.com/originals/7d/1d/81/7d1d8104d1460bb020561f06a6522bad.png'},
+            {name:'Dog', imgSrc:'https://www.mcicon.com/wp-content/uploads/2021/06/Dog-37.jpg'},
+            {name:'Fish', imgSrc:'https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Fish_icon_%28The_Noun_Project_27052%29.svg/1024px-Fish_icon_%28The_Noun_Project_27052%29.svg.png'},
+            {name:'Cow', imgSrc:'https://i.pinimg.com/736x/2b/1e/3b/2b1e3be0893520d45d64a14d520c0868.jpg'},
+            {name:'Lion', imgSrc:'https://cdn5.vectorstock.com/i/thumb-large/11/34/wild-lion-icon-logo-template-vector-23921134.jpg'}
+        ]
     }
     
-    
+    const getters = {
+        getAllAnimals(state){
+            return state.category;
+        }
+    }
     const mutations = {
-       /* ADD_TASK:(state, payload)=>{
-            if(payload.title.trim().length>0){
-                state.message = payload.title +" Added Successfully"
-                state.todoList.push(payload);
-                state.showSnackbar = true;
-                state.taskSaved = true;
-            }
-            else{
-                state.message = "Empty Task Cann't Be Added"
-                state.showSnackbar = true;
-            }  
+        ADD_ANIMAL(state, payload){
+            state.category.push(payload);
         },
-        DELETE_TASK:(state, payload)=>{
-
-            state.message = state.todoList[payload].title + " deleted successfully"
-            state.todoList.splice(payload,1);
-            state.showSnackbar = true;
-        },
-        TO_EDIT(state, payload){
-            for(let i=0; i<state.todoList.length; i++){
-                if(i==payload){
-                    state.todoList[payload].isEdit = true;
-                }
-                else{
-                    state.todoList[i].isEdit = false;
-                }
-            }
-        },
-        UPDATE_TASK:(state, payload)=>{
-            if(payload.task.trim().length>0){
-                state.message = state.todoList[payload.index].title + " updated to "+ payload.task;
-                state.todoList[payload.index].title = payload.task;
-                state.todoList[payload.index].isEdit = false;
-            }
-            else{
-                state.message = "Cann't update with empty field."
-            }
-            state.showSnackbar = true;
-        },
-        CLOSE_SNACKBAR:(state)=>{
-            state.showSnackbar = false;
-        }*/
+        DELETE_ANIMAL(state, payload){
+            state.category.splice(payload,1);
+        }
     }
     
     
     const actions = {
-       /* addTask:(context,payload) => {
-            context.commit('ADD_TASK',payload)
+        addAnimal(context, payload){
+            context.commit('ADD_ANIMAL', payload);
         },
-        deleteTask:(context,payload)=>{
-            context.commit('DELETE_TASK',payload)
-        },
-        closeSnackbar:(context)=>{
-            context.commit('CLOSE_SNACKBAR');
-        },
-        toEdit:(context, payload)=>{
-            context.commit('TO_EDIT', payload);
-        },
-        updateTask:(context, payload)=>{
-            context.commit('UPDATE_TASK',payload);
-        }*/
+        deleteAnimal:(context,payload)=>{
+            context.commit('DELETE_ANIMAL',payload)
+        }
     }
     
     
     export default {
     namespaced: true,
     state,
+    getters,
     mutations,
     actions
     }

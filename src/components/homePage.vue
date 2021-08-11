@@ -12,7 +12,7 @@
         </v-row>
         <div class="mt-12 text-center">
             <category></category>
-        </div>
+        </div> 
     </v-container>
 </template>
 <script>
