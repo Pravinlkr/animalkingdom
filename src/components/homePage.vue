@@ -1,14 +1,10 @@
 <template>
     <v-container class="mt-8">
-        <v-row justify="space-between">
+        <v-row class="topHeader">
             <h2>Animals of the Kingdom</h2>
-            <v-spacer></v-spacer>
-            <v-spacer></v-spacer>
-            <v-spacer></v-spacer>
-            <v-spacer></v-spacer>
-            <v-spacer></v-spacer>
-            <v-spacer></v-spacer>
+            <div class="createButton">
             <create></create>
+            </div>
         </v-row>
         <div class="mt-12 text-center">
             <category></category>
@@ -26,3 +22,25 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+.topHeader{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+@media (max-width:500px){
+    .topHeader{
+        flex-direction: column;
+        text-align: center;
+    }
+    .createButton{
+        margin-top: 3%;
+    }
+}
+@media (max-width:1023px){
+    .topHeader{
+        margin:auto 5%;
+    }    
+}
+</style>

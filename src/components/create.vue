@@ -9,22 +9,18 @@
         <v-btn
           v-bind="attrs"
           v-on="on"
+          class="mt-3"
         >
           Create
         </v-btn>
       </template>
       <v-card>
-        <v-card-title>
-          <span class="text-h5">Add New Animal</span>
-        </v-card-title>
         <v-card-text>
+          <v-card-title>
+              <span class="text-h5">Add New Animal</span>
+            </v-card-title>
           <v-container>
-            <v-alert
-              border="top"
-              color="red lighten-2"
-              dark
-              v-if="message.length>0"
-            >
+            <v-alert type="warning" outlined v-if="message.length>0">
               {{message}}
             </v-alert>
             <v-row>               
@@ -79,9 +75,18 @@ import {mapActions} from 'vuex';
            message:''
         }
     },
+    watch:{
+      name(val){
+        val = val.trim('');
+        if(val.length>0){
+          this.message='';
+        }
+      }
+    },
     methods:{
       ...mapActions('animal',['addAnimal']),
       clearInput(){
+        this.name = '';
         this.message = '';
         this.fileInputKey++;
       },
@@ -89,12 +94,13 @@ import {mapActions} from 'vuex';
           event.preventDefault();
           const file = event.target.files[0];
           this.image = URL.createObjectURL(file);
+          this.message ='';
        },
       saveAnimal(){
+        this.name = this.name.trim('');
         if(this.name.length>0 && this.image != null){
           this.addAnimal({name:this.name, imgSrc: this.image})
           this.dialog = false;
-          this.name = '';
           this.clearInput();
         }
         else{
