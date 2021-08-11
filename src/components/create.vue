@@ -1,5 +1,5 @@
 <template>
-  <v-row justify="center">
+  <v-row justify="end">
     <v-dialog
       v-model="dialog"
       persistent
@@ -20,7 +20,7 @@
               <span class="text-h5">Add New Animal</span>
             </v-card-title>
           <v-container>
-            <v-alert type="warning" outlined v-if="message.length>0">
+            <v-alert type="warning" outlined v-if="message">
               {{message}}
             </v-alert>
             <v-row>               
@@ -78,7 +78,7 @@ import {mapActions} from 'vuex';
     watch:{
       name(val){
         val = val.trim('');
-        if(val.length>0){
+        if(val){
           this.message='';
         }
       }

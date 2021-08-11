@@ -1,7 +1,7 @@
 <template>
 <div>
-    <v-row class="d-flex">
-        <v-col v-for="(animal,index) in getAllAnimals" v-bind:key="index">
+    <v-row>
+        <v-col v-for="(animal,index) in getAllAnimals" :key="index">
             <v-card
                 class="mx-auto"
                 width="250"
@@ -11,7 +11,7 @@
                 <v-img
                 :src='animal.imgSrc'
                 height="200px"
-                ><v-btn text class="float-right" v-on:click="deleteAnimal(index)">x</v-btn></v-img>
+                ><v-btn text class="float-right" @click="deleteAnimal(index)">x</v-btn></v-img>
 
                 <v-card-title>
                 {{animal.name}}
