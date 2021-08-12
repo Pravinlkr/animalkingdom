@@ -1,11 +1,11 @@
 <template>
     <v-container class="mt-8">
-        <v-row>
-            <v-col cols="12" sm="6">
+        <v-row class="text-center">
+            <v-col cols="12" sm="5" md="5" lg="4">
                 <h2>Animals of the Kingdom</h2>
             </v-col>
-            
-            <v-col cols="12" sm="6">
+            <v-col cols="12" sm="5" md="6" d-xs-none lg="7"></v-col>
+            <v-col cols="12" sm="2" md="1" lg="1">
                 <create></create>
             </v-col>
         </v-row>

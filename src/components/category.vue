@@ -1,7 +1,7 @@
 <template>
 <div>
     <v-row>
-        <v-col v-for="(animal,index) in getAllAnimals" :key="index">
+        <v-col v-for="(animal,index) in getAllAnimals" :key="index" lg="3" sm="4">
             <v-card
                 class="mx-auto"
                 width="250"

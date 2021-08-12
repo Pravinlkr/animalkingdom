@@ -1,5 +1,4 @@
 <template>
-  <v-row justify="end">
     <v-dialog
       v-model="dialog"
       persistent
@@ -9,7 +8,6 @@
         <v-btn
           v-bind="attrs"
           v-on="on"
-          class="mt-3"
         >
           Create
         </v-btn>
@@ -60,7 +58,6 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
-  </v-row>
 </template>
 
 <script>
