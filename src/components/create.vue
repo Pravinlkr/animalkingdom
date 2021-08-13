@@ -8,6 +8,7 @@
         <v-btn
           v-bind="attrs"
           v-on="on"
+          class="float-sm-right"
         >
           Create
         </v-btn>
